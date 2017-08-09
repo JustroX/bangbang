@@ -38,58 +38,6 @@ pre_bullet = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///sync out
-self.bullet_id = mp_map_syncOut("bullet_id",self.bullet_id);
-self.crit_chance = mp_map_syncOut("crit_chance",self.crit_chance);
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///sync ins
-
-mp_map_syncIn("bullet_id",self.bullet_id);
-mp_map_syncIn("crit_chance",self.crit_chance);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -189,8 +137,7 @@ if(dead)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///dead if local
-if(htme_isLocal())
+            <string>///dead 
 dead = true;
 </string>
           </argument>
@@ -215,20 +162,17 @@ dead = true;
           <argument>
             <kind>1</kind>
             <string>///record
-if(htme_isLocal())
+var con = obj_game_control;
+con.dammage_dealt += net_damage;
+if(net_damage&gt;enemy_hp)
 {
-    var con = obj_game_control;
-    con.dammage_dealt += net_damage;
-    if(net_damage&gt;enemy_hp)
+    con.kills+=1;
+    if(con.alarm[0]!=-1)
     {
-        con.kills+=1;
-        if(con.alarm[0]!=-1)
-        {
-            con.multikill+=1;
-            con.max_mkill = max(con.multikill,con.max_mkill);
-            con.alarm[0] = 300;
-            announce(con.multikill);
-        }
+        con.multikill+=1;
+        con.max_mkill = max(con.multikill,con.max_mkill);
+        con.alarm[0] = 300;
+        announce(con.multikill);
     }
 }
 </string>
@@ -304,8 +248,7 @@ blast_radius = bullet_map[? "blast_radius"];
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///dead if local
-if(htme_isLocal())
+            <string>///dead
 dead = true;
 </string>
           </argument>

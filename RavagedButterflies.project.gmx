@@ -630,59 +630,69 @@
       <object>objects\obj_server_handler</object>
       <object>objects\obj_upnp</object>
     </objects>
-    <objects name="multiplayer_game">
-      <object>objects\obj_network_control</object>
-      <object>objects\obj_but_create_server</object>
-      <object>objects\obj_but_join_game</object>
-      <object>objects\obj_connecting</object>
-      <objects name="team selection">
-        <object>objects\obj_team_selection_control</object>
-        <object>objects\obj_game_start_but</object>
-        <object>objects\obj_lobby_end</object>
-        <object>objects\obj_team_identifier</object>
-        <object>objects\obj_team_number_but</object>
-      </objects>
-      <objects name="game summary">
-        <object>objects\obj_winner_control</object>
-        <object>objects\obj_claim_price</object>
-      </objects>
-      <objects name="platform objects">
-        <object>objects\obj_player</object>
-        <object>objects\obj_bullet</object>
-        <object>objects\obj_draw_background</object>
-        <object>objects\obj_consumable_effect</object>
-        <object>objects\obj_explosion</object>
-        <object>objects\obj_game_control</object>
-        <objects name="effects">
-          <object>objects\obj_effects_fireworks</object>
-          <object>objects\obj_effects_explode</object>
-        </objects>
-        <objects name="hud">
-          <object>objects\obj_hud</object>
-          <object>objects\obj_controller</object>
-          <object>objects\obj_controller_aim</object>
-          <object>objects\obj_container_gun</object>
-          <object>objects\obj_container_consumable</object>
-        </objects>
-        <object>objects\obj_drop</object>
-        <object>objects\obj_announce</object>
-      </objects>
-    </objects>
-    <objects name="singleplayer_game">
-      <objects name="platform objects">
-        <object>objects\obj_ladder</object>
-        <object>objects\obj_platform</object>
-        <object>objects\obj_wall</object>
-      </objects>
-      <objects name="player">
-        <object>objects\obj_player_s</object>
-      </objects>
-    </objects>
     <objects name="nerd room">
       <object>objects\obj_nerd_room</object>
       <object>objects\obj_back_but</object>
     </objects>
     <object>objects\obj_get_ip</object>
+    <objects name="game">
+      <objects name="multiplayer_game">
+        <object>objects\obj_network_control</object>
+        <objects name="team selection">
+          <object>objects\obj_team_selection_control</object>
+          <object>objects\obj_game_start_but</object>
+          <object>objects\obj_lobby_end</object>
+          <object>objects\obj_team_identifier</object>
+          <object>objects\obj_team_number_but</object>
+        </objects>
+        <objects name="game summary">
+          <object>objects\obj_winner_control</object>
+          <object>objects\obj_claim_price</object>
+        </objects>
+        <objects name="platform objects">
+          <object>objects\obj_player</object>
+          <object>objects\obj_bullet</object>
+          <object>objects\obj_draw_background</object>
+          <object>objects\obj_consumable_effect</object>
+          <object>objects\obj_explosion</object>
+          <object>objects\obj_game_control</object>
+          <objects name="effects">
+            <object>objects\obj_effects_fireworks</object>
+            <object>objects\obj_effects_explode</object>
+          </objects>
+          <objects name="hud">
+            <object>objects\obj_hud</object>
+            <object>objects\obj_controller</object>
+            <object>objects\obj_controller_aim</object>
+            <object>objects\obj_container_gun</object>
+            <object>objects\obj_container_consumable</object>
+          </objects>
+          <object>objects\obj_drop</object>
+          <object>objects\obj_announce</object>
+        </objects>
+        <objects name="ui">
+          <object>objects\obj_but_create_server</object>
+          <object>objects\obj_but_join_game</object>
+          <object>objects\obj_connecting</object>
+        </objects>
+      </objects>
+      <objects name="singleplayer_game">
+        <objects name="player">
+          <object>objects\obj_player_s</object>
+        </objects>
+        <objects name="platform objects">
+          <object>objects\obj_game_controller_s</object>
+          <object>objects\obj_explosion_s</object>
+          <object>objects\obj_bullet_s</object>
+          <object>objects\obj_drop_s</object>
+        </objects>
+      </objects>
+      <objects name="platform objects">
+        <object>objects\obj_ladder</object>
+        <object>objects\obj_platform</object>
+        <object>objects\obj_wall</object>
+      </objects>
+    </objects>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\timeline0</timeline>
