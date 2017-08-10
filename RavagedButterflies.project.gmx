@@ -686,6 +686,8 @@
           <object>objects\obj_bullet_s</object>
           <object>objects\obj_drop_s</object>
         </objects>
+        <object>objects\obj_enemy</object>
+        <object>objects\obj_game_control_s</object>
       </objects>
       <objects name="platform objects">
         <object>objects\obj_ladder</object>

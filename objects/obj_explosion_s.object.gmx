@@ -102,12 +102,19 @@ if(bullet_id!=-1 and alarm[0]==-1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///damage
+            <string>///damage [EDIT THIS]
 var bmap = db_get(obj_database,"bullet",bullet_id);
 damage = bmap[? "damage"];
 knockback = bmap[? "knockback"];
 blast_radius = bmap[? "blast_radius"];
 var inst_n = instance_number(obj_player_s);
+
+/*
+LOOK FOR ENEMIES
+
+
+*/
+
 
 for(var i=0; i&lt;inst_n; i++)
 {
