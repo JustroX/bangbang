@@ -64,10 +64,12 @@ href = pre_last_stand;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(master.selected == index)
+            <string>///goto last stand
+
+if(master.selected == index)
 {
 global.prev_room = room;
-room_goto(room_not_ready);
+room_goto(room_last_stand);
 }
 </string>
           </argument>
