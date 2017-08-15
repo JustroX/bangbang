@@ -41,6 +41,12 @@ prev = -1;
 
 prev_pressed0 = 0;
 prev_pressed1 = 0;
+
+//get propper controller
+if(global.singleplayer)
+game_controller = obj_game_control_s;
+else
+game_controller = obj_game_control;
 </string>
           </argument>
         </arguments>
@@ -75,27 +81,27 @@ pressed0 = device_mouse_check_button(0,mb_left);
 pressed1 = device_mouse_check_button(1,mb_left);
 
 
-if(pressed0 and !prev_pressed0 and obj_game_control.player_alive)
+if(pressed0 and !prev_pressed0 and game_controller.player_alive)
 {
     var xx = device_mouse_x(0) - x;
     var yy = device_mouse_y(0) - y;
     if(xx&gt;0 and xx&lt;32 and yy&gt;0 and yy&lt;64)
     {
-        with(obj_game_control.player)
+        with(game_controller.player)
         {
             event_perform(ev_keypress,ord('C'));
         }
     }
     if(xx&gt;96 and xx&lt;128 and yy&gt;0 and yy&lt;64)
     {
-        with(obj_game_control.player)
+        with(game_controller.player)
         {
             event_perform(ev_keypress,ord('B'));
         }
     }
     if(xx&gt;32 and xx&lt;96 and yy&gt;0 and yy&lt;64)
     {
-        with(obj_game_control.player)
+        with(game_controller.player)
         {
             event_perform(ev_keypress,ord('V'));
         }
@@ -104,27 +110,27 @@ if(pressed0 and !prev_pressed0 and obj_game_control.player_alive)
 
 prev_pressed0 = pressed0;
 
-if(pressed1 and !prev_pressed1 and obj_game_control.player_alive)
+if(pressed1 and !prev_pressed1 and game_controller.player_alive)
 {
     var xx = device_mouse_x(1) - x;
     var yy = device_mouse_y(1) - y;
     if(xx&gt;0 and xx&lt;32 and yy&gt;0 and yy&lt;64)
     {
-        with(obj_game_control.player)
+        with(game_controller.player)
         {
             event_perform(ev_keypress,ord('C'));
         }
     }
     if(xx&gt;96 and xx&lt;128 and yy&gt;0 and yy&lt;64)
     {
-        with(obj_game_control.player)
+        with(game_controller.player)
         {
             event_perform(ev_keypress,ord('B'));
         }
     }
     if(xx&gt;32 and xx&lt;96 and yy&gt;0 and yy&lt;64)
     {
-        with(obj_game_control.player)
+        with(game_controller.player)
         {
             event_perform(ev_keypress,ord('V'));
         }
@@ -154,9 +160,9 @@ prev_pressed1 = pressed1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(obj_game_control.player_alive)
+            <string>if(game_controller.player_alive)
 {
-    var local_player = obj_game_control.player;
+    var local_player = game_controller.player;
   //  if(local_player.consumable_choice!=prev)
   //  {
         if(ds_list_size(local_player.consumables)&gt;0)
@@ -199,7 +205,7 @@ prev_pressed1 = pressed1;
           <argument>
             <kind>1</kind>
             <string>///draw gun
-if(obj_game_control.player_alive)
+if(game_controller.player_alive)
 {
     if(sprite_consumable!=-1)
     {

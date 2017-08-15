@@ -110,9 +110,10 @@ if(dead)
 {    
     if(blast_radius!=0)
     {
-         var explosion = instance_create(x,y,obj_explosion);
+         var explosion = instance_create(x,y,obj_explosion_s);
          explosion.bullet_id = bullet_id; 
     }
+    instance_destroy();
 }
 
 </string>

@@ -25,6 +25,29 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///set global variable
+
+global.singleplayer = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///create the player
 var xx, yy;
 
@@ -56,7 +79,7 @@ my = 0;
 angle = 0;
 lives = 3;
 pressed  =0;
-alarm[4] = 1800 + floor(random_range(-300,300));
+alarm[4] = 5;
 done = false;
 
 </string>
@@ -142,7 +165,7 @@ while(!found)
     found = db_is_ingame(obj_database,ran_id);
 }
 
-var inst = instance_create(xx,yy,obj_drop);
+var inst = instance_create(xx,yy,obj_drop_s);
 inst.drop_id = ran_id;
 }
 

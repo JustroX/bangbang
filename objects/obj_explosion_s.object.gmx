@@ -118,7 +118,7 @@ LOOK FOR ENEMIES
 
 for(var i=0; i&lt;inst_n; i++)
 {
-    var cur_inst = instance_find(obj_player,i);
+    var cur_inst = instance_find(obj_player_s,i);
     if(point_distance(x,y,cur_inst.x,cur_inst.y) &lt; blast_radius )
     {
         with(cur_inst)

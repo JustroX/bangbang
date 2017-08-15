@@ -122,7 +122,7 @@ db_insert_gun(self,"AK 47",100,1,100,temp,"AK 47",10,5);                   //ak4
         
 
 temp = db_insert_bullet(self,6,40,0,false,0,1,0,0,0,0,0,0,0,0,0);    //d eagle bullet
-db_insert_gun(self,"D Eagle",60,1,30,temp,"D Eagle",7,20);                   //d eagle                
+db_insert_gun(self,"D Eagle",60,1,30,temp,"D Eagle",7,20);                   //d eagle              
         
 
 temp = db_insert_bullet(self,3,35,0,false,0,1,0,0,0,0,0,0,0,0,0);    //glock bullet

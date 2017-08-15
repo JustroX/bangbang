@@ -191,7 +191,7 @@ max_mkill = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///create the player
+            <string>///create the drops
 
 
 var xx, yy;
@@ -225,7 +225,7 @@ while(!found)
     found = db_is_ingame(obj_database,ran_id);
 }
 
-var inst = instance_create(xx,yy,obj_drop);
+var inst = instance_create(xx,yy,obj_drop_s);
 inst.drop_id = ran_id;
 }
 

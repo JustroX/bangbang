@@ -344,7 +344,7 @@ if(gun!=-1)
     if(obj_controller_aim.pressed and !pressed_prev)
     {
         pressed_prev = true;
-        alarm[0] = 0; //fire
+        alarm[0] = 2; //fire
     }
     if(!obj_controller_aim.pressed and pressed_prev)
     {
@@ -642,7 +642,7 @@ else
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_drop">
+    <event eventtype="4" ename="obj_drop_s">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -665,30 +665,27 @@ if(other.dead == false)
 {
     var drop_id = other.drop_id;
     other.dead = true;
-    if(htme_isLocal())
+    if(db_is_consumable(obj_database,drop_id))
     {
-        if(db_is_consumable(obj_database,drop_id))
-        {
-            var map = ds_list_create();
-            map[| item_id] = drop_id;
-            map[| item_quantity] = 1;
-            var consumables_size = ds_list_size(self.consumables);
-            self.consumables[| consumables_size] = map;
-            ds_list_mark_as_list(consumables,consumables_size);
-            event_perform(ev_keypress,ord('B'));
-        }
-        if(db_is_gun(obj_database,drop_id))
-        {
-            var gun_choices_size = ds_list_size(self.gun_choices);
-            var gmap = db_get(obj_database,"gun",db_get_ingame(obj_database,drop_id));
-            var temp_list = ds_list_create();
-            temp_list[| item_id] = drop_id;
-            temp_list[| 1 ]      = gmap[? "ammo_count"];
-            // show_message(bag_item[| item_id]);
-            self.gun_choices[| gun_choices_size] = temp_list ;
-            ds_list_mark_as_list(self.gun_choices,gun_choices_size);
-            event_perform(ev_keypress,ord('Z'));
-        }
+        var map = ds_list_create();
+        map[| item_id] = drop_id;
+        map[| item_quantity] = 1;
+        var consumables_size = ds_list_size(self.consumables);
+        self.consumables[| consumables_size] = map;
+        ds_list_mark_as_list(consumables,consumables_size);
+        event_perform(ev_keypress,ord('B'));
+    }
+    if(db_is_gun(obj_database,drop_id))
+    {
+        var gun_choices_size = ds_list_size(self.gun_choices);
+        var gmap = db_get(obj_database,"gun",db_get_ingame(obj_database,drop_id));
+        var temp_list = ds_list_create();
+        temp_list[| item_id] = drop_id;
+        temp_list[| 1 ]      = gmap[? "ammo_count"];
+        // show_message(bag_item[| item_id]);
+        self.gun_choices[| gun_choices_size] = temp_list ;
+        ds_list_mark_as_list(self.gun_choices,gun_choices_size);
+        event_perform(ev_keypress,ord('Z'));
     }
 }
 </string>
@@ -696,7 +693,7 @@ if(other.dead == false)
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_bullet">
+    <event eventtype="4" ename="obj_bullet_s">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -915,8 +912,14 @@ if(x&gt;room_width) x =room_width;
             <string>///Draw nameplate
 draw_set_color(image_blend);
 draw_set_halign(fa_center);
-if(team == obj_team_identifier.team)
-draw_sprite(spr_team_identifier,0,x,y-sprite_yoffset-30);
+
+//***FOR MULTIPLAYER ONLY*****************//
+
+//if(team == obj_team_identifier.team)
+//draw_sprite(spr_team_identifier,0,x,y-sprite_yoffset-30);
+
+//***************************************//
+
 //draw_text(x,y-sprite_yoffset-5-string_height(self.name),self.name);
 //draw_text(x,y-sprite_yoffset-30-string_height(self.hp),self.hp);
 //draw_text(x,y-sprite_yoffset-45-string_height(string(con.value)),string(con.value));
@@ -1050,8 +1053,6 @@ draw_sprite_ext(feet,0,x,y,image_xscale,1,0,c_white,1);
           <argument>
             <kind>1</kind>
             <string>///prev gun
-if(htme_isLocal())
-{
 if(ds_list_size(gun_choices)!=0)
 {
     var tgun = gun_choices[| gun_choice];
@@ -1069,8 +1070,6 @@ if(ds_list_size(gun_choices)!=0)
 }
 else
     self.gun = -1;
-    }
-
 </string>
           </argument>
         </arguments>
@@ -1094,9 +1093,6 @@ else
           <argument>
             <kind>1</kind>
             <string>///next gun
-if(htme_isLocal())
-{
-
 if(ds_list_size(gun_choices)!=0)
 {
     var tgun = gun_choices[| gun_choice];
@@ -1115,55 +1111,12 @@ if(ds_list_size(gun_choices)!=0)
 }
 else
     self.gun = -1;
-}
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="9" enumb="86">
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>htme_isLocal()</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>1</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -1233,64 +1186,8 @@ with(obj_hud)
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
     </event>
     <event eventtype="9" enumb="67">
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>htme_isLocal()</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>1</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -1343,64 +1240,8 @@ with(obj_hud)
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
     </event>
     <event eventtype="9" enumb="66">
-      <action>
-        <libid>1</libid>
-        <id>612</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_variable</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>htme_isLocal()</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>1</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -1452,20 +1293,6 @@ with(obj_hud)
 </string>
           </argument>
         </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
   </events>
