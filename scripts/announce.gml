@@ -11,4 +11,3 @@ switch(argument0)
 
 var a = instance_create(0,0,obj_announce);
 a.mes = mes;
-

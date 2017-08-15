@@ -57,7 +57,6 @@ global.ip = "Unresolved IP address";</code>
   <instances>
     <instance objName="obj_main_menu_control" x="32" y="320" name="inst_C3C61A25" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_but_quit" x="25" y="356" name="inst_3F38AD1F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_dual_instance" x="11" y="33" name="inst_EEA1A94A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

@@ -29,7 +29,7 @@
 var xx, yy;
 
 var offset  = random_range(-32,32);
-switch(team)
+switch(1)
 {
     case 1: 
             xx = 640+offset;
@@ -45,7 +45,7 @@ switch(team)
     break;    
 }
 
-player = instance_create(xx,yy,obj_player);
+player = instance_create(xx,yy,obj_player_s);
 player.team = 1;
 
 player_alive = true;
